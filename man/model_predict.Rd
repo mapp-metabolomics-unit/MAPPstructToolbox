@@ -20,6 +20,7 @@
 \alias{model_predict,filter_by_name,DatasetExperiment-method}
 \alias{model_predict,filter_na_count,DatasetExperiment-method}
 \alias{model_predict,filter_smeta,DatasetExperiment-method}
+\alias{model_predict,filter_vmeta,DatasetExperiment-method}
 \alias{model_predict,glog_transform,DatasetExperiment-method}
 \alias{model_predict,linear_model,DatasetExperiment-method}
 \alias{model_predict,mean_centre,DatasetExperiment-method}
@@ -55,6 +56,8 @@
 \S4method{model_predict}{filter_na_count,DatasetExperiment}(M, D)
 
 \S4method{model_predict}{filter_smeta,DatasetExperiment}(M, D)
+
+\S4method{model_predict}{filter_vmeta,DatasetExperiment}(M, D)
 
 \S4method{model_predict}{glog_transform,DatasetExperiment}(M, D)
 

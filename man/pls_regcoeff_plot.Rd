@@ -7,25 +7,13 @@
 pls_regcoeff_plot(ycol = 1, ...)
 }
 \arguments{
-\item{ycol}{(character, numeric, integer) The Y column to plot. The default is \code{1}.}
-
 \item{...}{additional slots and values passed to struct_class}
 }
 \value{
-A  \code{
-pls_regcoeff_plot
-} object. This object has no \code{output} slots.
-See \code{\link[struct]{chart_plot}} in the \code{struct} package to plot this chart object.
-
 struct object
 }
 \description{
 Plots the regression coefficients of a PLSDA model.
-
-Plots the regression coefficient scores of a PLSDA model
-}
-\details{
-This object makes use of functionality from the following packages:\itemize{\item{\code{pls}}\item{\code{ggplot2}}}
 }
 \examples{
 D = iris_DatasetExperiment()

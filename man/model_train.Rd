@@ -20,6 +20,7 @@
 \alias{model_train,filter_by_name,DatasetExperiment-method}
 \alias{model_train,filter_na_count,DatasetExperiment-method}
 \alias{model_train,filter_smeta,DatasetExperiment-method}
+\alias{model_train,filter_vmeta,DatasetExperiment-method}
 \alias{model_train,glog_transform,DatasetExperiment-method}
 \alias{model_train,linear_model,DatasetExperiment-method}
 \alias{model_train,mean_centre,DatasetExperiment-method}
@@ -55,6 +56,8 @@
 \S4method{model_train}{filter_na_count,DatasetExperiment}(M, D)
 
 \S4method{model_train}{filter_smeta,DatasetExperiment}(M, D)
+
+\S4method{model_train}{filter_vmeta,DatasetExperiment}(M, D)
 
 \S4method{model_train}{glog_transform,DatasetExperiment}(M, D)
 
