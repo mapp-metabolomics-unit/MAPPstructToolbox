@@ -8,7 +8,7 @@ inst/doc
 *.xlsx
 *.pdf
 *.log
-structtoolbox.Rproj
+MAPPstructToolbox.Rproj
 *.Rproj
 *.tiff
 vignettes/.build.timestamp

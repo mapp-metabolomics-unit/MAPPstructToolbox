@@ -11,7 +11,7 @@ list of cached ontology terms
 }
 \description{
 A cached list of ontology terms obtained from the ontology lookup service 
-(OLS) for ontology terms specified for objects in \code{structToolbox}.
+(OLS) for ontology terms specified for objects in \code{MAPPstructToolbox}.
 }
 \examples{
 cache = ontology_cache()

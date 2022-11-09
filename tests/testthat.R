@@ -1,5 +1,5 @@
 library(testthat)
 library(ggplot2)
-library(structToolbox)
+library(MAPPstructToolbox)
 
-test_check("structToolbox")
+test_check("MAPPstructToolbox")

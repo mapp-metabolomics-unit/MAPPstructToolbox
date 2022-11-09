@@ -56,7 +56,7 @@ setMethod(f="chart_plot",
         dopt=param_list(dobj)
         X=output_value(dobj,'results')
         L=levels(as.factor(X$actual))
-        plotClass= structToolbox:::createClassAndColors(X$actual)
+        plotClass= MAPPstructToolbox:::createClassAndColors(X$actual)
         X$actual=plotClass$class
         
         p=list()
@@ -94,7 +94,7 @@ setMethod(f="chart_plot",
             #geom_point(data=te,aes_(x=~sampleid,y=~fold),shape=20,size=2) +
             geom_tile(data=X2,aes_(x=~sampleid,y=~fold,fill=~Group),colour = "black") +
             scale_x_discrete(limits=uS) +
-            structToolbox:::theme_Publication(base_size = 12) +
+            MAPPstructToolbox:::theme_Publication(base_size = 12) +
             coord_equal() +
             theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5)) +
             scale_fill_manual(values=plotClass$manual_colors,drop=FALSE,name=copt$factor_name) +
