@@ -1,5 +1,5 @@
 ---
-title: "Data analysis of metabolomics and other omics datasets using the structToolbox"
+title: "Data analysis of metabolomics and other omics datasets using the MAPPstructToolbox"
 author: 
 - name: Gavin R Lloyd
   affiliation: Phenome Centre Birmingham, University of Birmingham, UK
@@ -16,11 +16,11 @@ output:
     toc_depth: 2  
     number_sections: true  
     toc_float: true
-package: structToolbox
+package: MAPPstructToolbox
 abstract: |
-    Data (pre-)processing and data analysis of Metabolomics and other omics datasets using struct and structToolbox, including univariate/multivariate statistics and machine learning approaches.
+    Data (pre-)processing and data analysis of Metabolomics and other omics datasets using struct and MAPPstructToolbox, including univariate/multivariate statistics and machine learning approaches.
 vignette: >
-  %\VignetteIndexEntry{Data analysis of metabolomics and other omics datasets using the structToolbox}
+  %\VignetteIndexEntry{Data analysis of metabolomics and other omics datasets using the MAPPstructToolbox}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 ---
@@ -33,18 +33,18 @@ set.seed(57475)
 ```
 
 # Introduction
-The 'structToolbox' includes an extensive set of data (pre-)processing and analysis tools for metabolomics and other omics, with a strong emphasis on statistics and machine learning. The methods and tools have been implemented using class-based templates available via the `struct` (Statistics in R Using Class-based Templates) package. The aim of this vignette is to introduce the reader to basic and more advanced structToolbox-based operations and implementations, such as the use of `struct` objects, getting/setting methods/parameters, and building workflows for the analysis of mass spectrometry (MS) and nuclear magnetic resonance (NMR)-based Metabolomics and proteomics datasets. The workflows demonstrated here include a wide range of methods and tools including pre-processing such as filtering, normalisation and scaling, followed by univariate and/or multivariate statistics, and machine learning approaches. 
+The 'MAPPstructToolbox' includes an extensive set of data (pre-)processing and analysis tools for metabolomics and other omics, with a strong emphasis on statistics and machine learning. The methods and tools have been implemented using class-based templates available via the `struct` (Statistics in R Using Class-based Templates) package. The aim of this vignette is to introduce the reader to basic and more advanced MAPPstructToolbox-based operations and implementations, such as the use of `struct` objects, getting/setting methods/parameters, and building workflows for the analysis of mass spectrometry (MS) and nuclear magnetic resonance (NMR)-based Metabolomics and proteomics datasets. The workflows demonstrated here include a wide range of methods and tools including pre-processing such as filtering, normalisation and scaling, followed by univariate and/or multivariate statistics, and machine learning approaches. 
 
 # Getting started
-The latest version of `structToolbox` compatible with your current R version can be installed using `BiocManager`.
+The latest version of `MAPPstructToolbox` compatible with your current R version can be installed using `BiocManager`.
 
 ```{r, eval=FALSE, include=TRUE}
 # install BiocManager if not present
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-# install structToolbox and dependencies
-BiocManager::install("structToolbox")
+# install MAPPstructToolbox and dependencies
+BiocManager::install("MAPPstructToolbox")
 ```
 
 A number of additional packages are needed for this vignette.
@@ -58,7 +58,7 @@ A number of additional packages are needed for this vignette.
 
 suppressPackageStartupMessages({
     # Bioconductor packages
-    library(structToolbox)
+    library(MAPPstructToolbox)
     library(pmp)
     library(ropls)
     library(BiocFileCache)
@@ -78,14 +78,14 @@ bfc <- BiocFileCache(ask = FALSE)
 # Introduction to `struct` objects, including models, model sequences, model charts and ontology.
 
 ## Introduction
-PCA (Principal Component Analysis) and PLS (Partial Least Squares) are commonly applied methods for exploring and analysing multivariate datasets. Here we use these two statistical methods to demonstrate the different types of `struct` (STatistics in R Using Class Templates) objects that are available as part of the `structToolbox` and how these objects (i.e. class templates) can be used to conduct unsupervised and supervised multivariate statistical analysis.
+PCA (Principal Component Analysis) and PLS (Partial Least Squares) are commonly applied methods for exploring and analysing multivariate datasets. Here we use these two statistical methods to demonstrate the different types of `struct` (STatistics in R Using Class Templates) objects that are available as part of the `MAPPstructToolbox` and how these objects (i.e. class templates) can be used to conduct unsupervised and supervised multivariate statistical analysis.
 
 ## Dataset
 For demonstration purposes we will use the "Iris" dataset. This famous (Fisher's or Anderson's) dataset contains measurements of sepal length and width and petal length and width, in centimeters, for 50 flowers from each of 3 class of Iris. The class are Iris setosa, versicolor, and virginica. See here (https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html) for more information.
 
 Note: this vignette is also compatible with the Direct infusion mass spectrometry metabolomics "benchmark" dataset described in Kirwan et al., _Sci Data_ *1*, 140012 (2014) (https://doi.org/10.1038/sdata.2014.12).
 
-Both datasets are available as part of the structToolbox package and already prepared as a `DatasetExperiment` object.
+Both datasets are available as part of the MAPPstructToolbox package and already prepared as a `DatasetExperiment` object.
 
 ```{r}
 ## Iris dataset (comment if using MTBLS79 benchmark data)
@@ -151,7 +151,7 @@ Unless you have good reason not to, it is usually sensible to mean centre the co
 M = mean_centre() + PCA(number_components = 4)
 ```
   
-In `structToolbox` mean centring and PCA are both model objects, and joining them using "+" creates a model_sequence object. In a model_sequence the outputs of the first object (mean centring) are automatically passed to the inputs of the second object (PCA), which allows you chain together modelling steps in order to build a workflow.
+In `MAPPstructToolbox` mean centring and PCA are both model objects, and joining them using "+" creates a model_sequence object. In a model_sequence the outputs of the first object (mean centring) are automatically passed to the inputs of the second object (PCA), which allows you chain together modelling steps in order to build a workflow.
 
 The objects in the model_sequence can be accessed by indexing, and we can combine this with dollar notation. For example, the PCA object is the second object in our sequence and we can access the number of components as follows:
 
@@ -230,7 +230,7 @@ grid.arrange(grobs=list(g1,g2),nrow=1)
 ```
 
 ### Ontology
-Within the `struct` framework (and `structToolbox`) an `ontology` slot is provided to allow for standardardised definitions for objects and its inputs and outputs using the Ontology Lookup Service (OLS).
+Within the `struct` framework (and `MAPPstructToolbox`) an `ontology` slot is provided to allow for standardardised definitions for objects and its inputs and outputs using the Ontology Lookup Service (OLS).
 
 For example, STATO is a general purpose STATistics Ontology (http://stato-ontology.org). From the webpage:
 
@@ -246,7 +246,7 @@ P=PCA()
 P$ontology
 ```
 
-The `ontology` method can be used obtain more detailed ontology information. When `cache = NULL` the `struct` package will automatically attempt to use the OLS API (via the `rols` package) to obtain a name and description for the provided identifiers. Here we used cached versions of the ontology definitions provided in the `structToolbox` package to prevent issues connecting to the OLS API when building the package.
+The `ontology` method can be used obtain more detailed ontology information. When `cache = NULL` the `struct` package will automatically attempt to use the OLS API (via the `rols` package) to obtain a name and description for the provided identifiers. Here we used cached versions of the ontology definitions provided in the `MAPPstructToolbox` package to prevent issues connecting to the OLS API when building the package.
 
 ```{r}
 ontology(P,cache = ontology_cache()) # set cache = NULL (default) for online use
@@ -338,16 +338,16 @@ P$metric
 # A typical workflow for processing and analysing mass spectrometry-based metabolomics data.
 
 ## Introduction
-This vignette provides an overview of a `structToolbox` workflow implemented to process (e.g. filter features, signal drift and batch correction, normalise and missing value imputation) mass spectrometry data. The workflow exists of methods that are part of the Peak Matrix Processing (`r Biocpkg('pmp')`) package, including a range of additional filters that are described in Kirwan et al., [2013](https://link.springer.com/article/10.1007/s00216-013-6856-7), [2014](https://doi.org/10.1038/sdata.2014.12).
+This vignette provides an overview of a `MAPPstructToolbox` workflow implemented to process (e.g. filter features, signal drift and batch correction, normalise and missing value imputation) mass spectrometry data. The workflow exists of methods that are part of the Peak Matrix Processing (`r Biocpkg('pmp')`) package, including a range of additional filters that are described in Kirwan et al., [2013](https://link.springer.com/article/10.1007/s00216-013-6856-7), [2014](https://doi.org/10.1038/sdata.2014.12).
 
-Some packages are required for this vignette in addition `structToolbox`:
+Some packages are required for this vignette in addition `MAPPstructToolbox`:
 
 ## Dataset
 For demonstration purposes we will process and analyse the MTBLS79 dataset ('Dataset 7:SFPM' Kirwan et al., [2014](https://doi.org/10.1038/sdata.2014.12). This dataset represents a systematic evaluation of the reproducibility of a multi-batch direct-infusion mass spectrometry (DIMS)-based metabolomics study of cardiac tissue extracts. It comprises twenty biological samples (cow vs. sheep) that were analysed repeatedly, in 8 batches across 7 days, together with a concurrent set of quality control (QC) samples. Data are presented from each step of the data processing workflow and are available through MetaboLights (https://www.ebi.ac.uk/metabolights/MTBLS79). 
 
-The `MTBLS79_DatasetExperiment` object included in the `structToolbox` package is a processed version of the MTBLS79 dataset available in peak matrix processing (`r Biocpkg('pmp')`) package. This vignette describes step by step how the `structToolbox` version was created from the `pmp` version (i.e. 'Dataset 7:SFPM' from the Scientific Data publication - https://doi.org/10.1038/sdata.2014.12).
+The `MTBLS79_DatasetExperiment` object included in the `MAPPstructToolbox` package is a processed version of the MTBLS79 dataset available in peak matrix processing (`r Biocpkg('pmp')`) package. This vignette describes step by step how the `MAPPstructToolbox` version was created from the `pmp` version (i.e. 'Dataset 7:SFPM' from the Scientific Data publication - https://doi.org/10.1038/sdata.2014.12).
 
-The `SummarizedExperiment` object from the `pmp` package needs to be converted to a `DatasetExperiment` object for use with `structToolbox`.
+The `SummarizedExperiment` object from the `pmp` package needs to be converted to a `DatasetExperiment` object for use with `MAPPstructToolbox`.
 
 ```{r,warning=FALSE,message=FALSE}
 # the pmp SE object
@@ -385,7 +385,7 @@ Full processing of the data set requires a number of steps. These will be applie
 ## Signal drift and batch correction
 A batch correction algorithm is applied to reduce intra- and inter- batch variations in the dataset.
 Quality Control-Robust Spline Correction (QC-RSC) is provided in the `pmp` package, and it has been
-wrapped into a `structToolbox` object called `sb_corr`.
+wrapped into a `MAPPstructToolbox` object called `sb_corr`.
 
 ```{r,message=FALSE,warning=FALSE}
 
@@ -542,7 +542,7 @@ chart_plot(C,M7[2]) + coord_fixed()
 # Partial Least Squares (PLS) analysis of a untargeted LC-MS-based clinical metabolomics dataset.
 
 ## Introduction
-The aim of this vignette is to demonstrate how to 1) apply and validate Partial Least Squares (PLS) analysis using the structToolbox, 2) reproduce statistical analysis in [Thevenot et al. (2015)](https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00354) and 3. compare different implementations of PLS.
+The aim of this vignette is to demonstrate how to 1) apply and validate Partial Least Squares (PLS) analysis using the MAPPstructToolbox, 2) reproduce statistical analysis in [Thevenot et al. (2015)](https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00354) and 3. compare different implementations of PLS.
 
 ## Dataset
 The objective of the original study was to:
@@ -598,7 +598,7 @@ for (k in colnames(DE$sample_meta)) {
 plot_grid(plotlist=g, nrow=1, align='vh', labels=c('A','B','C'))
 ```
 
-The third plot coloured by gender (C) is identical to Figure 2 of the `r Biocpkg("ropls")` package vignette. The `structToolbox` package provides a range of PCA-related diagnostic plots, including D-statistic, scree, and loadings plots. These plots can be used to further explore the variance of the data.
+The third plot coloured by gender (C) is identical to Figure 2 of the `r Biocpkg("ropls")` package vignette. The `MAPPstructToolbox` package provides a range of PCA-related diagnostic plots, including D-statistic, scree, and loadings plots. These plots can be used to further explore the variance of the data.
 
 ```{r,fig.height=10,fig.width=9,fig.wide=TRUE}
 C = pca_scree_plot()
@@ -616,7 +616,7 @@ plot_grid(p1,p2,nrow=2)
 ```
 
 ## Partial Least Squares (PLS) analysis
-The `ropls` package uses its own implementation of the (O)PLS algorithms. `structToolbox` uses the `pls`
+The `ropls` package uses its own implementation of the (O)PLS algorithms. `MAPPstructToolbox` uses the `pls`
 package, so it is interesting to compare the outputs from both approaches. For simplicity only the scores
 plots are compared.
 
@@ -629,9 +629,9 @@ C = pls_scores_plot(factor_name = 'gender')
 chart_plot(C,M[2])
 ```
 
-The plot is similar to fig.3 of the `r Biocpkg("ropls")` vignette. Differences are due to inverted LV axes, a common occurrence with the NIPALS algorithm (used by both `structToolbox` and `ropls`) which depends on how the algorithm is initialised.
+The plot is similar to fig.3 of the `r Biocpkg("ropls")` vignette. Differences are due to inverted LV axes, a common occurrence with the NIPALS algorithm (used by both `MAPPstructToolbox` and `ropls`) which depends on how the algorithm is initialised.
 
-To compare the R2 values for the model in structToolbox we have to use a regression model, instead of a discriminant model. For this we convert the gender factor to a numeric variable before applying the model.
+To compare the R2 values for the model in MAPPstructToolbox we have to use a regression model, instead of a discriminant model. For this we convert the gender factor to a numeric variable before applying the model.
 
 ```{r,fig.width=10,fig.height=9,fig.wide=TRUE}
 # convert gender to numeric
@@ -657,7 +657,7 @@ g4 = chart_plot(C,M[2])
 plot_grid(plotlist = list(g1,g2,g3,g4), nrow=2,align='vh')
 ```
 
-The `ropls` package automatically applies cross-validation to asses the performance of the PLSDA model. In `structToolbox` this is applied separately to give more control over the approach used if desired. The default cross-validation used by the `ropls` package is 7-fold cross-validation and we replicate that here.
+The `ropls` package automatically applies cross-validation to asses the performance of the PLSDA model. In `MAPPstructToolbox` this is applied separately to give more control over the approach used if desired. The default cross-validation used by the `ropls` package is 7-fold cross-validation and we replicate that here.
 
 ```{r,results='asis'}
 # model sequence
@@ -696,7 +696,7 @@ The permuted models have a balanced accuracy of around 50%, which is to be expec
 # Univariate and multivariate statistical analysis of a NMR-based clinical metabolomics dataset.
 
 ## Introduction
-The purpose of this vignette is to demonstrate the different functionalities and methods that are available as part of the structToolbox and reproduce the data analysis reported in [Mendez et al., (2020)](https://link.springer.com/article/10.1007/s11306-019-1588-0) and [Chan et al., (2016)](https://www.nature.com/articles/bjc2015414).
+The purpose of this vignette is to demonstrate the different functionalities and methods that are available as part of the MAPPstructToolbox and reproduce the data analysis reported in [Mendez et al., (2020)](https://link.springer.com/article/10.1007/s11306-019-1588-0) and [Chan et al., (2016)](https://www.nature.com/articles/bjc2015414).
 
 ## Dataset
 The 1H-NMR dataset used and described in [Mendez et al., (2020)](https://link.springer.com/article/10.1007/s11306-019-1588-0) and in this vignette contains processed spectra of urine samples obtained from gastric cancer and healthy patients [Chan et al., (2016)](https://www.nature.com/articles/bjc2015414). The experimental raw data is available through Metabolomics Workbench ([PR000699](http://dx.doi.org/10.21228/M8B10B)) and the processed version is available from [here](https://github.com/CIMCB/MetabWorkflowTutorial/raw/master/GastricCancer_NMR.xlsx) as an Excel data file.
@@ -797,7 +797,7 @@ plot_grid(g1,g2,align='hv',nrow=1,axis='tblr')
 ```
 
 ## Univariate statistics
-`structToolbox` provides a number of objects for ttest, counting numbers of features etc. For brevity only the ttest is calculated for comparison with the workflow we are following ([link](https://cimcb.github.io/MetabWorkflowTutorial/Tutorial1.html)). The QC samples need to be excluded, and the data reduced to only the GC and HE groups.
+`MAPPstructToolbox` provides a number of objects for ttest, counting numbers of features etc. For brevity only the ttest is calculated for comparison with the workflow we are following ([link](https://cimcb.github.io/MetabWorkflowTutorial/Tutorial1.html)). The QC samples need to be excluded, and the data reduced to only the GC and HE groups.
 
 ```{r}
 # prepare model
@@ -820,7 +820,7 @@ head(out)
 ##  Multivariate statistics and machine learning
 
 ### Training and Test sets
-Splitting data into training and test sets is an important aspect of machine learning. In `structToolbox` this is implemented using the `split_data` object for random subsampling across the whole dataset, and `stratified_split` for splitting based on group sizes, which is the approach used by Mendez et al.
+Splitting data into training and test sets is an important aspect of machine learning. In `MAPPstructToolbox` this is implemented using the `split_data` object for random subsampling across the whole dataset, and `stratified_split` for splitting based on group sizes, which is the approach used by Mendez et al.
 
 ```{r}
 # prepare model
@@ -837,7 +837,7 @@ test
 ```
 
 ### Optimal number of PLS components
-In Mendez et al a k-fold cross-validation is used to determine the optimal number of PLS components. 100 bootstrap iterations are used to generate confidence intervals. In `strucToolbox` these are implemented using "iterator" objects, that can be combined with model objects. R2 is used as the metric for optimisation, so the `PLSR` model in structToolbox will be used. For speed only 10 bootstrap iterations are used here.
+In Mendez et al a k-fold cross-validation is used to determine the optimal number of PLS components. 100 bootstrap iterations are used to generate confidence intervals. In `strucToolbox` these are implemented using "iterator" objects, that can be combined with model objects. R2 is used as the metric for optimisation, so the `PLSR` model in MAPPstructToolbox will be used. For speed only 10 bootstrap iterations are used here.
 
 ```{r}
 # scale/transform training data
@@ -877,7 +877,7 @@ chart_plot(C,MS)
 The chart plotted shows Q2, which is comparable with Figure 13 of [Mendez et al]((https://cimcb.github.io/MetabWorkflowTutorial/Tutorial1.html)) . Two components were selected by Mendez et al, so we will use that here.
 
 ### PLS model evalutation
-To evaluate the model for discriminant analysis in structToolbox the `PLSDA` model is appropriate.
+To evaluate the model for discriminant analysis in MAPPstructToolbox the `PLSDA` model is appropriate.
 
 ```{r,fig.wide=TRUE,warning=FALSE,fig.width=15,fig.height=5.5}
 # prepare the discriminant model
@@ -904,10 +904,10 @@ MET = calculate(AUC(),P$y$Class,P$yhat[,1])
 MET
 ```
 
-Note that the default cutoff in A and B of the figure above for the PLS models in `structToolbox` is 0, because groups are encoded as +/-1. This has no impact on the overall performance of the model.
+Note that the default cutoff in A and B of the figure above for the PLS models in `MAPPstructToolbox` is 0, because groups are encoded as +/-1. This has no impact on the overall performance of the model.
 
 ### Permutation test
-A permutation test can be used to assess how likely the observed result is to have occurred by chance. In structToolbox `permutation_test` is an iterator object that can be combined with other iterators and models.
+A permutation test can be used to assess how likely the observed result is to have occurred by chance. In MAPPstructToolbox `permutation_test` is an iterator object that can be combined with other iterators and models.
 
 ```{r}
 # model sequence
@@ -1003,12 +1003,12 @@ The aim of this vignette is to illustrate how to apply SVM analysis for Classify
 
 Support vector Machines (SVM) are a commonly used method in Machine Learning. For classification tasks they are used to generate a boundary between groups of samples in the training set. As well as generating linear boundaries, SVM can be extended to exploit the use of kernels and generate complex non-linear boundaries between groups if required.
 
-For the `structToolbox` package, SVM functionality provided by the `r CRANpkg("e1071")` package has been incorporated into a `model` object. A chart object (`svm_plot_2d`) is also available to plot SVM boundaries for data with two variables.
+For the `MAPPstructToolbox` package, SVM functionality provided by the `r CRANpkg("e1071")` package has been incorporated into a `model` object. A chart object (`svm_plot_2d`) is also available to plot SVM boundaries for data with two variables.
 
 ## Dataset
 The 1H-NMR dataset used and described in [Mendez et al., (2020)](https://link.springer.com/article/10.1007/s11306-019-1588-0, https://github.com/CIMCB/MetabWorkflowTutorial) and in this vignette contains processed spectra of urine samples obtained from gastric cancer and healthy patients [Chan et al., (2016)](https://www.nature.com/articles/bjc2015414). The raw experimental data is available through Metabolomics Workbench ([PR000699](http://dx.doi.org/10.21228/M8B10B)) and the processed version is available from [here](https://github.com/CIMCB/MetabWorkflowTutorial/raw/master/GastricCancer_NMR.xlsx) as an Excel data file.
 
-For simplicity we will use a pre-processed version of the 1H-NMR "Gastric cancer" dataset using the `structToolbox` package. Details in regards to pre-processing are reported in the "NMR_clinical_metabolomics" vignette of the `r Biocpkg("structToolbox") package.
+For simplicity we will use a pre-processed version of the 1H-NMR "Gastric cancer" dataset using the `MAPPstructToolbox` package. Details in regards to pre-processing are reported in the "NMR_clinical_metabolomics" vignette of the `r Biocpkg("MAPPstructToolbox") package.
 
 ```{r}
 # summary of DatasetExperiment object
@@ -1042,7 +1042,7 @@ DE2
 ```
 
 ## Basic SVM model
-The simplest SVM model uses a linear kernel. In `structToolbox` the `SVM` model can be used to train and apply SVM models. A `svm_plot_2d` chart object is provided for visualisation of boundaries in two dimensions.
+The simplest SVM model uses a linear kernel. In `MAPPstructToolbox` the `SVM` model can be used to train and apply SVM models. A `svm_plot_2d` chart object is provided for visualisation of boundaries in two dimensions.
 
 ```{r,fig.width=5,fig.height=6}
 # SVM model
@@ -1108,7 +1108,7 @@ plot_grid(prow, legend, ncol=1, rel_heights = c(1, .1))
 ```
 
 ## Kernel functions
-A number of different kernels can be used with support vector machines. For the `structToolbox` wrapper
+A number of different kernels can be used with support vector machines. For the `MAPPstructToolbox` wrapper
 ‘linear’, ‘polynomial’,‘radial’ and ‘sigmoid’ kernels can be specified. Using kernels allows the boundary to be
 more flexible, but often require additional parameters to be specified. The best kernel to use will vary depending on the dataset, but a common choice is the radial kernel as it allows high flexibility with a single parameter.
 
@@ -1243,7 +1243,7 @@ unzip(path, files = "Proteomics_01_uniprot_canonical_normalized.txt", exdir=temp
 all_data <-  read.delim(file.path(temp,"Proteomics_01_uniprot_canonical_normalized.txt"), as.is = TRUE, header = TRUE, sep = "\t")
 ```
 
-The imported data needs to be converted to `DatasetExperiment` format for use with `structToolbox`.
+The imported data needs to be converted to `DatasetExperiment` format for use with `MAPPstructToolbox`.
 
 ```{r}
 # extract data matrix
@@ -1306,7 +1306,7 @@ plot_grid(g1,g2,nrow=1,align='vh',axis='tblr')
 ```
 
 ### Data transformation
-The data is log2 transformed, then scaled such that the mean of the medians is equal for all conditions. These steps are available in `structToolbox` using `log_transform` and `mean_of_medians` objects.
+The data is log2 transformed, then scaled such that the mean of the medians is equal for all conditions. These steps are available in `MAPPstructToolbox` using `log_transform` and `mean_of_medians` objects.
 
 ```{r,fig.width=10,fig.height=4.5,fig.small=FALSE}
 # prepare model sequence
@@ -1336,7 +1336,7 @@ plot_grid(g1,g2,nrow=1,align='vh',axis='tblr')
 ### Missing value filtering
 Missing value filtering involves removing any feature (gene) where there are at least 3 missing values per group in at least 11 samples.
 
-This specific filter is not in `structToolbox` at this time, but can be achieved by combining `filter_na_count` and `filter_by_name` objects. 
+This specific filter is not in `MAPPstructToolbox` at this time, but can be achieved by combining `filter_na_count` and `filter_by_name` objects. 
 
 Specifically, the default output of `filter_na_count` is changed to return a matrix of NA counts per class. This output is then connected to the 'names' input of `filter_by_names` and converted to TRUE/FALSE using the 'seq_fcn' input. 
 
@@ -1558,7 +1558,7 @@ unzip(zipfile=path, files = "LC_MS_raw_data.xlsx", exdir=temp)
 # read samples
 data <- as.data.frame(read.xlsx(file.path(temp,"LC_MS_raw_data.xlsx"),sheet = 'Data'))
 ```
-The imported data needs to be converted to `DatasetExperiment` format for use with `structToolbox`.
+The imported data needs to be converted to `DatasetExperiment` format for use with `MAPPstructToolbox`.
 
 ```{r}
 # extract sample meta data

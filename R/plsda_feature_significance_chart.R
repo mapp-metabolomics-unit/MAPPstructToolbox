@@ -101,7 +101,7 @@ setMethod(f="chart_plot",
             geom_point() +
             labs(x=txt,
                 y="Feature") +
-            structToolbox:::theme_Publication() +
+            MAPPstructToolbox:::theme_Publication() +
             theme(
                 panel.background = element_blank(),
                 panel.grid.major = element_line(colour="#f0f0f0")
@@ -113,7 +113,7 @@ setMethod(f="chart_plot",
             scale_fill_gradient2(low='#5e4fa2',mid='#ffffbf',high='#9e0142',
                 midpoint=0,
                 limits=c(-1,1),name='Reg. coefficient',breaks=c(-1,0,1),labels=c('-','0','+')) +
-            structToolbox:::theme_Publication() +
+            MAPPstructToolbox:::theme_Publication() +
             theme(axis.title.y=element_blank(),
                 axis.text.y=element_blank()) +
             coord_fixed()+

@@ -1,4 +1,4 @@
-Package: structToolbox
+Package: MAPPstructToolbox
 Type: Package
 Title: Data processing & analysis tools for Metabolomics and other omics
 Version: 1.9.0
@@ -67,7 +67,7 @@ Collate:
     'feature_profile_class.R'
     'filter_by_name_class.R'
     'filter_na_count.R'
-    'filter_smeta_class.R'
+    'filter_vmeta_class.R'
     'fisher_exact_class.R'
     'fold_change_class.R'
     'fold_change_int_class.R'
@@ -104,7 +104,7 @@ Collate:
     'run_doc.R'
     'sb_corr.R'
     'stratified_split_class.R'
-    'structToolbox.R'
+    'MAPPstructToolbox.R'
     'svm_classifier_class.R'
     'tSNE_class.R'
     'tic_chart_class.R'
@@ -145,4 +145,4 @@ Suggests: agricolae,
  rappdirs
 VignetteBuilder: knitr
 biocViews: WorkflowStep, Metabolomics
-URL: https://github.com/computational-metabolomics/structToolbox
+URL: https://github.com/computational-metabolomics/MAPPstructToolbox

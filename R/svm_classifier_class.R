@@ -254,8 +254,8 @@ setMethod(f="chart_plot",
         }
         
         g = g + geom_point(data=A,aes_(x=~x,y=~y,colour=~group)) +
-            structToolbox:::scale_colour_Publication(name=obj$factor_name) +
-            structToolbox:::theme_Publication(base_size = 12)
+            MAPPstructToolbox:::scale_colour_Publication(name=obj$factor_name) +
+            MAPPstructToolbox:::theme_Publication(base_size = 12)
         
         # Support vectors
         B=as.data.frame(dobj$SV)

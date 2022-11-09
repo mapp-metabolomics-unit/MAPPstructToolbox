@@ -1,4 +1,4 @@
-citHeader("To cite structToolbox in publications use:")
+citHeader("To cite MAPPstructToolbox in publications use:")
 
 citEntry(
   entry    = "Article",

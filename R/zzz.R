@@ -178,7 +178,7 @@ stringify_params = function(M,P,type='param',val=NULL) {
 #' ontology cache
 #'
 #' A cached list of ontology terms obtained from the ontology lookup service 
-#' (OLS) for ontology terms specified for objects in \code{structToolbox}.
+#' (OLS) for ontology terms specified for objects in \code{MAPPstructToolbox}.
 #' 
 #' @export ontology_cache
 #' @return list of cached ontology terms
