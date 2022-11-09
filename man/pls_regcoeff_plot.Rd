@@ -7,25 +7,13 @@
 pls_regcoeff_plot(ycol = 1, ...)
 }
 \arguments{
-\item{ycol}{(character, numeric, integer) The Y column to plot. The default is \code{1}.}
-
 \item{...}{additional slots and values passed to struct_class}
 }
 \value{
-A  \code{
-pls_regcoeff_plot
-} object. This object has no \code{output} slots.
-See \code{\link[struct]{chart_plot}} in the \code{struct} package to plot this chart object.
-
 struct object
 }
 \description{
 Plots the regression coefficients of a PLSDA model.
-
-Plots the regression coefficient scores of a PLSDA model
-}
-\details{
-This object makes use of functionality from the following packages:\itemize{\item{\code{pls}}\item{\code{ggplot2}}}
 }
 \examples{
 D = iris_DatasetExperiment()
@@ -34,14 +22,4 @@ M = model_apply(M,D)
 
 C = pls_regcoeff_plot(ycol='setosa')
 chart_plot(C,M[2])
-}
-\references{
-Liland K, Mevik B, Wehrens R (2021).
-\emph{pls: Partial Least Squares and Principal Component Regression}.
-R package version 2.8-0, \url{https://CRAN.R-project.org/package=pls}.
-
-Wickham H (2016).
-\emph{ggplot2: Elegant Graphics for Data Analysis}.
-Springer-Verlag New York.
-ISBN 978-3-319-24277-4, \url{https://ggplot2.tidyverse.org}.
 }

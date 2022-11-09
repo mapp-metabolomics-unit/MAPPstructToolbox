@@ -67,6 +67,7 @@ Collate:
     'feature_profile_class.R'
     'filter_by_name_class.R'
     'filter_na_count.R'
+    'filter_smeta_class.R'
     'filter_vmeta_class.R'
     'fisher_exact_class.R'
     'fold_change_class.R'
@@ -104,7 +105,7 @@ Collate:
     'run_doc.R'
     'sb_corr.R'
     'stratified_split_class.R'
-    'MAPPstructToolbox.R'
+    'structToolbox.R'
     'svm_classifier_class.R'
     'tSNE_class.R'
     'tic_chart_class.R'
@@ -121,7 +122,7 @@ Imports: ggplot2,
     sp,
     stats,
     utils
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Suggests: agricolae,
  BiocFileCache,
  BiocStyle,
