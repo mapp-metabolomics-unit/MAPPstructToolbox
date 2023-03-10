@@ -40,5 +40,9 @@ chart_plot(C,M[4],predicted(M[3]))
 Meyer D, Dimitriadou E, Hornik K, Weingessel A, Leisch F (2022).
 \emph{e1071: Misc Functions of the Department of Statistics, Probability
 Theory Group (Formerly: E1071), TU Wien}.
+<<<<<<< HEAD
 R package version 1.7-12, \url{https://CRAN.R-project.org/package=e1071}.
+=======
+R package version 1.7-11, \url{https://CRAN.R-project.org/package=e1071}.
+>>>>>>> 4cf0c67eb55383632564db02947df8c1c95d2746
 }

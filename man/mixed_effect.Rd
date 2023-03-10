@@ -38,9 +38,15 @@ M = mixed_effect(formula = y~Species+ Error(id/Species))
 M = model_apply(M,D)
 }
 \references{
+<<<<<<< HEAD
 Pinheiro J, Bates D, R Core Team (2022).
 \emph{nlme: Linear and Nonlinear Mixed Effects Models}.
 R package version 3.1-161, \url{https://CRAN.R-project.org/package=nlme}.
+=======
+Pinheiro J, Bates D, DebRoy S, Sarkar D, R Core Team (2022).
+\emph{nlme: Linear and Nonlinear Mixed Effects Models}.
+R package version 3.1-155, \url{https://CRAN.R-project.org/package=nlme}.
+>>>>>>> 4cf0c67eb55383632564db02947df8c1c95d2746
 
 Pinheiro JC, Bates DM (2000).
 \emph{Mixed-Effects Models in S and S-PLUS}.
@@ -49,7 +55,11 @@ Springer, New York.
 
 Lenth R (2023).
 \emph{emmeans: Estimated Marginal Means, aka Least-Squares Means}.
+<<<<<<< HEAD
 R package version 1.8.4-1, \url{https://CRAN.R-project.org/package=emmeans}.
+=======
+R package version 1.7.5, \url{https://CRAN.R-project.org/package=emmeans}.
+>>>>>>> 4cf0c67eb55383632564db02947df8c1c95d2746
 
 Fox J, Weisberg S (2019).
 \emph{An R Companion to Applied Regression}, Third edition.
