@@ -57,7 +57,7 @@ setMethod(f="model_apply",
     definition=function(M,D)
     {
         opt=param_list(M)
-        smeta=D$sample_meta
+        smeta=D$variable_meta
         x=D$data
         if (opt$mode=='exclude') {
             out=smeta[[opt$factor_name]] %in% opt$levels
@@ -68,7 +68,7 @@ setMethod(f="model_apply",
         }
         D=D[!out,]
         # drop excluded levels from factors
-        D$sample_meta=droplevels(D$sample_meta)
+        D$variable_meta=droplevels(D$variable_meta)
         output_value(M,'filtered')=D
         return(M)
     }
