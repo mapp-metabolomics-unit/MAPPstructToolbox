@@ -23,7 +23,6 @@ M = model_apply(M,D)
 C = pls_regcoeff_plot(ycol='setosa')
 chart_plot(C,M[2])
 }
-<<<<<<< HEAD
 \references{
 Liland K, Mevik B, Wehrens R (2022).
 \emph{pls: Partial Least Squares and Principal Component Regression}.
@@ -34,5 +33,3 @@ Wickham H (2016).
 Springer-Verlag New York.
 ISBN 978-3-319-24277-4, \url{https://ggplot2.tidyverse.org}.
 }
-=======
->>>>>>> 4cf0c67eb55383632564db02947df8c1c95d2746

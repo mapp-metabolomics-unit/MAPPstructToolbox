@@ -47,6 +47,16 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("MAPPstructToolbox")
 ```
 
+
+```{r, eval=FALSE, include=TRUE}
+# We use the MAPPstructToolbox package 
+# Uncomment the lines below to download the MAPPstructToolbox package from github
+
+# library(devtools)
+# install_github("mapp-metabolomics-unit/MAPPstructToolbox", force = TRUE)
+```
+
+
 A number of additional packages are needed for this vignette.
 
 ```{r, message=FALSE, warning=FALSE}

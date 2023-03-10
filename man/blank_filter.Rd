@@ -48,15 +48,8 @@ M = blank_filter(fold_change=2,
 M = model_apply(M,D)
 }
 \references{
-<<<<<<< HEAD
 Jankevics A, Lloyd GR, Weber RJM (2022).
 \emph{pmp: Peak Matrix Processing and signal batch correction for
 metabolomics datasets}.
 R package version 1.10.0.
-=======
-Jankevics A, Lloyd GR, Weber RJM (2021).
-\emph{pmp: Peak Matrix Processing and signal batch correction for
-metabolomics datasets}.
-R package version 1.6.0.
->>>>>>> 4cf0c67eb55383632564db02947df8c1c95d2746
 }

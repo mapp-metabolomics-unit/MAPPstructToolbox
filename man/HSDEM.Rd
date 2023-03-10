@@ -38,7 +38,6 @@ M = model_apply(M,D)
 \references{
 Lenth R (2023).
 \emph{emmeans: Estimated Marginal Means, aka Least-Squares Means}.
-<<<<<<< HEAD
 R package version 1.8.4-1, \url{https://CRAN.R-project.org/package=emmeans}.
 
 Pinheiro J, Bates D, R Core Team (2022).
@@ -49,11 +48,4 @@ Pinheiro JC, Bates DM (2000).
 \emph{Mixed-Effects Models in S and S-PLUS}.
 Springer, New York.
 \Rhref{https://doi.org/10.1007/b98882}{doi:10.1007\slash{}b98882}.
-=======
-R package version 1.7.5, \url{https://CRAN.R-project.org/package=emmeans}.
-
-Pinheiro J, Bates D, DebRoy S, Sarkar D, R Core Team (2022).
-\emph{nlme: Linear and Nonlinear Mixed Effects Models}.
-R package version 3.1-155, \url{https://CRAN.R-project.org/package=nlme}.
->>>>>>> 4cf0c67eb55383632564db02947df8c1c95d2746
 }

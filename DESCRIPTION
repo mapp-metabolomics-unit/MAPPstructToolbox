@@ -124,11 +124,7 @@ Imports: ggplot2,
     sp,
     stats,
     utils
-<<<<<<< HEAD
 RoxygenNote: 7.2.3
-=======
-RoxygenNote: 7.2.1
->>>>>>> 4cf0c67eb55383632564db02947df8c1c95d2746
 Suggests: agricolae,
  BiocFileCache,
  BiocStyle,
