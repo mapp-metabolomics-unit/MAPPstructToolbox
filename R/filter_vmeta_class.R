@@ -57,12 +57,12 @@ setMethod(f="model_apply",
     definition=function(M,D)
     {
         opt=param_list(M)
-        smeta=D$variable_meta
+        vmeta=D$variable_meta
         x=D$data
         if (opt$mode=='exclude') {
-            out=smeta[[opt$factor_name]] %in% opt$levels
+            out=vmeta[[opt$factor_name]] %in% opt$levels
         } else if (opt$mode=='include') {
-            out=!(smeta[[opt$factor_name]] %in% opt$levels)
+            out=!(vmeta[[opt$factor_name]] %in% opt$levels)
         } else {
             stop('mode must be "include" or "exclude"')
         }
