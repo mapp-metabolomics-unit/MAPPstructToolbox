@@ -66,7 +66,7 @@ setMethod(f="model_apply",
         } else {
             stop('mode must be "include" or "exclude"')
         }
-        D=D[!out,]
+        D=D[,!out]
         # drop excluded levels from factors
         D$variable_meta=droplevels(D$variable_meta)
         output_value(M,'filtered')=D
