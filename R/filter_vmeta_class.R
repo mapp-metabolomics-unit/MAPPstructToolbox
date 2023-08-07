@@ -66,6 +66,10 @@ setMethod(f="model_apply",
         } else {
             stop('mode must be "include" or "exclude"')
         }
+            # Handle NA values separately
+        if (is.na(opt$levels)) {
+              out = out | is.na(vmeta[[opt$factor_name]])
+        }
         D=D[,!out]
         # drop excluded levels from factors
         D$variable_meta=droplevels(D$variable_meta)
