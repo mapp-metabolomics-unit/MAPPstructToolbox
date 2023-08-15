@@ -70,7 +70,7 @@ setMethod(f = "model_apply",
                   out = x < opt$level
               }
                   # Handle NA values separately
-              if (is.na(opt$levels)) {
+              if (is.na(opt$level)) {
                   out = out | is.na(vmeta[[opt$factor_name]])
               }
               D=D[,!out]
