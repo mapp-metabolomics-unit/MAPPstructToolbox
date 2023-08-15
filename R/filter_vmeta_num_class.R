@@ -58,9 +58,10 @@ setMethod(f = "model_apply",
           signature = c("filter_vmeta_num", "DatasetExperiment"),
           definition = function(M, D) {
               opt = param_list(M)
-              vmeta = D$variable_meta
+              # Discard rows with NA values in the filtered column
+              vmeta = D$variable_meta[complete.cases(D$variable_meta[[opt$factor_name]]),]
               x = vmeta[[opt$factor_name]]
-              
+
               if (opt$mode == 'exact') {
                   out = x == opt$level
               } else if (opt$mode == 'above') {
@@ -68,22 +69,18 @@ setMethod(f = "model_apply",
               } else if (opt$mode == 'below') {
                   out = x < opt$level
               }
-              
-              # Handle NA values
-              if (is.na(opt$level)) {
-                  out = out | is.na(x)
+                  # Handle NA values separately
+              if (is.na(opt$levels)) {
+                  out = out | is.na(vmeta[[opt$factor_name]])
               }
-              
-              D = D[, !out]
-              D$variable_meta = droplevels(D$variable_meta)
-              
-              # Discard rows with NA values in the filtered column
-              D = D[complete.cases(D$filtered), ]
-              
-              output_value(M, 'filtered') = D
+              D=D[,!out]
+              # drop excluded levels from factors
+              D$variable_meta=droplevels(D$variable_meta)
+              output_value(M,'filtered')=D
               return(M)
           }
 )
+
 
 
 #' @export
