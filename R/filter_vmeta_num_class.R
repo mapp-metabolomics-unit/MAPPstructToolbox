@@ -60,20 +60,31 @@ setMethod(f = "model_apply",
               opt = param_list(M)
               vmeta = D$variable_meta
               x = vmeta[[opt$factor_name]]
+              
               if (opt$mode == 'exact') {
-                  out = x != opt$level
+                  out = x == opt$level
               } else if (opt$mode == 'above') {
-                  out = x <= opt$level
+                  out = x > opt$level
               } else if (opt$mode == 'below') {
-                  out = x >= opt$level
+                  out = x < opt$level
               }
+              
+              # Handle NA values
+              if (is.na(opt$level)) {
+                  out = out | is.na(x)
+              }
+              
               D = D[, !out]
-              # drop excluded levels from factors
               D$variable_meta = droplevels(D$variable_meta)
+              
+              # Discard rows with NA values in the filtered column
+              D = D[complete.cases(D$filtered), ]
+              
               output_value(M, 'filtered') = D
               return(M)
           }
 )
+
 
 #' @export
 #' @template model_train
