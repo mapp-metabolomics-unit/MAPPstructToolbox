@@ -2,12 +2,12 @@
 % Please edit documentation in R/DFA_class.R, R/PCA_class.R, R/PLSR_class.R,
 %   R/PLSDA_class.R, R/autoscale_class.R, R/blank_filter_class.R,
 %   R/constant_sum_norm_class.R, R/d_ratio_filter_class.R,
-%   R/filter_by_name_class.R, R/filter_na_count.R, R/filter_vmeta_class.R,
-%   R/glog_class.R, R/linear_model_class.R, R/mean_centre_class.R,
-%   R/model_train_doc.R, R/mv_feature_filter_class.R,
-%   R/mv_sample_filter_class.R, R/oplsr_class.R, R/oplsda_class.R,
-%   R/paretoscale_class.R, R/pqn_norm_method_class.R, R/svm_classifier_class.R,
-%   R/vec_norm_class.R
+%   R/filter_by_name_class.R, R/filter_na_count.R, R/filter_smeta_class.R,
+%   R/filter_vmeta_class.R, R/filter_vmeta_num_class.R, R/glog_class.R,
+%   R/linear_model_class.R, R/mean_centre_class.R, R/model_train_doc.R,
+%   R/mv_feature_filter_class.R, R/mv_sample_filter_class.R, R/oplsr_class.R,
+%   R/oplsda_class.R, R/paretoscale_class.R, R/pqn_norm_method_class.R,
+%   R/svm_classifier_class.R, R/vec_norm_class.R
 \name{model_train,DFA,DatasetExperiment-method}
 \alias{model_train,DFA,DatasetExperiment-method}
 \alias{model_train,PCA,DatasetExperiment-method}
@@ -21,6 +21,7 @@
 \alias{model_train,filter_na_count,DatasetExperiment-method}
 \alias{model_train,filter_smeta,DatasetExperiment-method}
 \alias{model_train,filter_vmeta,DatasetExperiment-method}
+\alias{model_train,filter_vmeta_num,DatasetExperiment-method}
 \alias{model_train,glog_transform,DatasetExperiment-method}
 \alias{model_train,linear_model,DatasetExperiment-method}
 \alias{model_train,mean_centre,DatasetExperiment-method}
@@ -58,6 +59,8 @@
 \S4method{model_train}{filter_smeta,DatasetExperiment}(M, D)
 
 \S4method{model_train}{filter_vmeta,DatasetExperiment}(M, D)
+
+\S4method{model_train}{filter_vmeta_num,DatasetExperiment}(M, D)
 
 \S4method{model_train}{glog_transform,DatasetExperiment}(M, D)
 

@@ -1,14 +1,13 @@
 #' @eval get_description('filter_vmeta_num')
 #' @examples
 #' D = MTBLS79_DatasetExperiment()
-#' M = filter_vmeta_num(mode='above', level=10, comparison='>', factor_name='QC')
+#' M = filter_vmeta_num(mode='above', level=10, factor_name='QC')
 #' M = model_apply(M, D)
 #' @export filter_vmeta_num
-filter_vmeta_num = function(mode='exact', level, comparison='=', factor_name, ...) {
+filter_vmeta_num = function(mode='exact', level, factor_name, ...) {
     out = struct::new_struct('filter_vmeta_num',
         mode = mode,
         level = level,
-        comparison = comparison,
         factor_name = factor_name,
         ...
     )
@@ -20,16 +19,15 @@ filter_vmeta_num = function(mode='exact', level, comparison='=', factor_name, ..
     contains = c('model'),
     slots = c(mode = 'enum',
               level = 'numeric',
-              comparison = 'enum',
               factor_name = 'entity',
               filtered = 'DatasetExperiment'
     ),
     prototype = list(type = 'filter',
                      name = 'Filter by numeric variable metadata',
                      description = paste0('The data is filtered based on numeric variable metadata ',
-                                         'using the specified comparison and level. '),
+                                         'using the specified mode and level. '),
                      predicted = 'filtered',
-                     .params = c('mode', 'level', 'comparison', 'factor_name'),
+                     .params = c('mode', 'level', 'factor_name'),
                      .outputs = c('filtered'),
 
                      mode = enum(name = 'Mode of action',
@@ -44,23 +42,7 @@ filter_vmeta_num = function(mode='exact', level, comparison='=', factor_name, ..
                                  max_length = 1
                      ),
 
-                     level = numeric(name = 'Numeric threshold',
-                                     description = 'The numeric value for filtering.',
-                                     type = 'numeric',
-                                     value = NA
-                     ),
-
-                     comparison = enum(name = 'Comparison operator',
-                                       description = c(
-                                           "=" = 'Equal to',
-                                           ">" = 'Greater than',
-                                           "<" = 'Less than'
-                                       ),
-                                       type = 'character',
-                                       allowed = c('=', '>', '<'),
-                                       value = '=',
-                                       max_length = 1
-                     ),
+                     level = numeric(),
 
                      factor_name = entity(name = 'Factor name',
                                           description = 'The factor name for filtering.',
@@ -78,12 +60,12 @@ setMethod(f = "model_apply",
               opt = param_list(M)
               vmeta = D$variable_meta
               x = vmeta[[opt$factor_name]]
-              if (opt$comparison == '=') {
-                  out = ifelse(opt$mode == 'exact', x == opt$level, NA)
-              } else if (opt$comparison == '>') {
-                  out = ifelse(opt$mode == 'above', x > opt$level, NA)
-              } else if (opt$comparison == '<') {
-                  out = ifelse(opt$mode == 'below', x < opt$level, NA)
+              if (opt$mode == 'exact') {
+                  out = x != opt$level
+              } else if (opt$mode == 'above') {
+                  out = x <= opt$level
+              } else if (opt$mode == 'below') {
+                  out = x >= opt$level
               }
               D = D[, !out]
               # drop excluded levels from factors
