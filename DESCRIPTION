@@ -69,6 +69,7 @@ Collate:
     'filter_na_count.R'
     'filter_smeta_class.R'
     'filter_vmeta_class.R'
+    'filter_vmeta_num_class.R'
     'fisher_exact_class.R'
     'fold_change_class.R'
     'fold_change_int_class.R'
