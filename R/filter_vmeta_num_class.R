@@ -61,17 +61,22 @@ setMethod(
         opt <- param_list(M)
         vmeta <- D$variable_meta
         x <- D$data
-        if (opt$mode == "exclude") {
-            out <- vmeta[[opt$factor_name]] %in% opt$levels
-        } else if (opt$mode == "include") {
-            out <- !(vmeta[[opt$factor_name]] %in% opt$levels)
-        } else {
-            stop('mode must be "include" or "exclude"')
+
+        if (opt$mode == "exact") {
+            out <- vmeta[[opt$factor_name]] == opt$level
+        } else if (opt$mode == "above") {
+            out <- vmeta[[opt$factor_name]] > opt$level
+        } else if (opt$mode == "below") {
+            out <- vmeta[[opt$factor_name]] < opt$level
         }
         # Handle NA values separately
-        if (is.na(opt$levels)) {
+        if (is.na(opt$level)) {
             out <- out | is.na(vmeta[[opt$factor_name]])
         }
+
+        # Whatsoever we convert NA to FALSE in the out variable
+        out[is.na(out)] <- FALSE
+
         D <- D[, out]
         # drop excluded levels from factors
         D$variable_meta <- droplevels(D$variable_meta)
