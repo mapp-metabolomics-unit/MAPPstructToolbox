@@ -54,31 +54,30 @@ filter_vmeta_num = function(mode='exact', level, factor_name, ...) {
 
 #' @export
 #' @template model_apply
-setMethod(f = "model_apply",
-          signature = c("filter_vmeta_num", "DatasetExperiment"),
-          definition = function(M, D) {
-              opt = param_list(M)
-              # Discard rows with NA values in the filtered column
-              vmeta = D$variable_meta[complete.cases(D$variable_meta[[opt$factor_name]]),]
-              x = vmeta[[opt$factor_name]]
-
-              if (opt$mode == 'exact') {
-                  out = x == opt$level
-              } else if (opt$mode == 'above') {
-                  out = x > opt$level
-              } else if (opt$mode == 'below') {
-                  out = x < opt$level
-              }
-                  # Handle NA values separately
-              if (is.na(opt$level)) {
-                  out = out | is.na(vmeta[[opt$factor_name]])
-              }
-              D=D[,!out]
-              # drop excluded levels from factors
-              D$variable_meta=droplevels(D$variable_meta)
-              output_value(M,'filtered')=D
-              return(M)
-          }
+setMethod(
+    f = "model_apply",
+    signature = c("filter_vmeta_num", "DatasetExperiment"),
+    definition = function(M, D) {
+        opt <- param_list(M)
+        vmeta <- D$variable_meta
+        x <- D$data
+        if (opt$mode == "exclude") {
+            out <- vmeta[[opt$factor_name]] %in% opt$levels
+        } else if (opt$mode == "include") {
+            out <- !(vmeta[[opt$factor_name]] %in% opt$levels)
+        } else {
+            stop('mode must be "include" or "exclude"')
+        }
+        # Handle NA values separately
+        if (is.na(opt$levels)) {
+            out <- out | is.na(vmeta[[opt$factor_name]])
+        }
+        D <- D[, out]
+        # drop excluded levels from factors
+        D$variable_meta <- droplevels(D$variable_meta)
+        output_value(M, "filtered") <- D
+        return(M)
+    }
 )
 
 
